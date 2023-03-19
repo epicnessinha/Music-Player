@@ -1,24 +1,9 @@
 import React, { useState, useRef } from "react";
-import {
-  Box,
-  Button,
-  Grid,
-  LinearProgress,
-  Stack,
-  Typography,
-  CardMedia,
-} from "@mui/material";
-import {
-  Pause,
-  PlayArrow,
-  SkipNext,
-  SkipPrevious,
-  Repeat,
-  RepeatOne,
-  Shuffle,
-} from "@mui/icons-material";
+import { Box, Grid, LinearProgress, Typography } from "@mui/material";
 import playlist from "../Playlist/Playlist";
-
+import AlbumCover from "../AlbumCover/AlbumCover";
+import SongDetails from "../SongDetails/SongDetails";
+import PlayerControls from "../PlayerControls/PlayerControls";
 import "./MusicPlayer.css";
 
 const MusicPlayer = () => {
@@ -95,53 +80,33 @@ const MusicPlayer = () => {
             <Typography variant="h4" align="center">
               <div className="music">Music Player</div>
             </Typography>
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <CardMedia
-                component="img"
-                sx={{
-                  width: "30%",
-                  height: "auto",
-                  objectFit: "contain",
-                }}
-                image={playlist[currentSongIndex].image}
-                alt={playlist[currentSongIndex].title}
-              />
-            </Box>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" align="center">
-              {playlist[currentSongIndex].title}
-            </Typography>
-            <Typography variant="subtitle1" align="center">
-              {playlist[currentSongIndex].artist}
-            </Typography>
+            <AlbumCover
+              image={playlist[currentSongIndex].image}
+              title={playlist[currentSongIndex].title}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <SongDetails
+              title={playlist[currentSongIndex].title}
+              artist={playlist[currentSongIndex].artist}
+            />
           </Grid>
           <Grid item xs={12}>
             <LinearProgress variant="determinate" value={songProgress} />
           </Grid>
           <Grid item xs={12}>
-            <Stack
-              direction="row"
-              justifyContent="center"
-              alignItems="center"
-              spacing={2}
-            >
-              <Button variant="outlined" onClick={prevSong}>
-                <SkipPrevious />
-              </Button>
-              <Button variant="outlined" onClick={playPause}>
-                {isPlaying ? <Pause /> : <PlayArrow />}
-              </Button>
-              <Button variant="outlined" onClick={nextSong}>
-                <SkipNext />
-              </Button>
-              <Button variant="outlined" onClick={handleShuffle}>
-                <Shuffle color={shuffle ? "primary" : "inherit"} />
-              </Button>
-              <Button variant="outlined" onClick={handleRepeat}>
-                {repeat ? <RepeatOne color="primary" /> : <Repeat />}
-              </Button>
-            </Stack>
+            <PlayerControls
+              prevSong={prevSong}
+              playPause={playPause}
+              isPlaying={isPlaying}
+              nextSong={nextSong}
+              shuffle={shuffle}
+              handleShuffle={handleShuffle}
+              repeat={repeat}
+              handleRepeat={handleRepeat}
+            />
           </Grid>
         </Grid>
       </Box>
