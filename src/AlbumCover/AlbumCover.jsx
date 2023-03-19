@@ -7,7 +7,7 @@ const AlbumCover = ({ image, title }) => {
       <CardMedia
         component="img"
         sx={{
-          width: '30%',
+          width: '35%',
           height: 'auto',
           objectFit: 'contain',
         }}

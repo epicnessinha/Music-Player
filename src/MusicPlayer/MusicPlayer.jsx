@@ -88,10 +88,12 @@ const MusicPlayer = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <SongDetails
+          <div className="details">
+            <SongDetails 
               title={playlist[currentSongIndex].title}
               artist={playlist[currentSongIndex].artist}
             />
+            </div>
           </Grid>
           <Grid item xs={12}>
             <LinearProgress variant="determinate" value={songProgress} />
